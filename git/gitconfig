@@ -1,0 +1,21 @@
+[alias]
+	citrix	= config user.email christian.lindig@citrix.com
+	gmail	= config user.email lindig@gmail.com
+	s	= status -s
+	ls	= log --oneline --graph --decorate
+	lsa	= log --oneline --graph --decorate --all
+	l1	= log --oneline
+	ll	= log --pretty=format:"%C(blue)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+[user]
+	name	= Christian Lindig
+	email	= lindig@gmail.com
+[mergetool]
+	keepBackup = true
+	prompt	= false
+[push]
+	default = simple
+[core]
+	editor	= gvim --remote-wait
+[merge]
+	tool	= gvimdiff
+	conflictstyle = diff3

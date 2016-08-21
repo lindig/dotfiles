@@ -1,0 +1,32 @@
+# vim: set ts=2 sw=2 et:
+#
+# bash_profile
+#
+
+alias l='ls -F'
+alias ll='ls -lhF'
+alias la='ls -lahF'
+alias m=less
+alias pd=pushd
+alias pp=popd
+alias dirs='dirs -v'
+alias macvim='/Applications/MacVim.app/Contents/MacOS/Vim -g --remote'
+alias isodate='date +%Y-%m-%d'
+
+PATH=$PATH:$HOME/bin
+PATH=$PATH:/usr/local/opt/go/bin
+export PATH
+
+export LESS='-XR'
+export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim --remote-wait'
+export HOMEBREW_NO_ANALYTICS=1
+
+# Go
+export GOPATH=/usr/local/opt/go
+
+# OCaml and OPAM
+. $HOME/.opam/opam-init/init.sh
+
+PS1=':\W \$ '
+umask u=rwx,g=rwx,o=rx
+shopt -s histappend

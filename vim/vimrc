@@ -1,0 +1,189 @@
+" ------------------------------------------------------------------
+" ~/.vimrc
+" ------------------------------------------------------------------
+
+set nocompatible
+set encoding=utf8
+set modeline
+
+" ------------------------------------------------------------------
+" Plugins
+" ------------------------------------------------------------------
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+" Plugin 'lervag/vimtex'
+" Plugin 'def-lkb/ocp-indent-vim'
+" Plugin 'scrooloose/syntastic'
+" Plugin 'tpope/vim-sensible'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" ------------------------------------------------------------------
+
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+inoremap <S-Tab> <C-V><Tab>
+
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set wildmenu
+set wildmode=longest:full:list
+set visualbell
+set cursorline
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+set relativenumber
+set undofile
+set autochdir
+
+" -- search
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set nohlsearch
+
+set wrap            " soft break long lines
+set linebreak       " soft break at word boundaries
+set breakindent     " soft break and indent
+set textwidth=72    " no hard line breaks
+set formatoptions=tcq
+
+set colorcolumn=80
+set columns=80
+
+set list
+set listchars=tab:├─
+
+set matchpairs+=<:>
+set iskeyword+=:
+set iskeyword+=_
+set iskeyword+=-
+
+set suffixes=.cmo,.cmi,.cmx,.aux,.toc,.pdf,.log
+
+filetype on
+syntax on
+filetype plugin on
+
+set background=dark
+colorscheme solarized
+
+set guioptions-=T
+set linespace=3
+set guifont=Menlo:h12
+
+" ------------------------------------------------------------------
+" files created by vim
+" ------------------------------------------------------------------
+
+set directory=$HOME/tmp/vim//
+set backupdir=$HOME/tmp/vim//
+set undodir=$HOME/tmp/vim//
+
+" ------------------------------------------------------------------
+" maps
+" ------------------------------------------------------------------
+let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
+
+nnoremap <leader>f 1z=
+nnoremap <leader>s :set spell!
+
+nnoremap <leader>a :as<CR>
+nnoremap <leader>c :noh<CR>
+nnoremap <leader>q gqip
+nnoremap <leader>Q vipJ
+nnoremap <leader>m :make
+nnoremap <leader>n :cn<CR>
+nnoremap <leader>k :bd<CR>
+nnoremap <leader>l :set invlist<CR>
+nnoremap <leader>sd :setlocal spell spelllang=de<CR>
+nnoremap <leader>se :setlocal spell spelllang=en_us<CR>
+
+nnoremap <Tab>    :bnext<CR>
+nnoremap <S-Tab>  :bprevious<CR>
+
+" ------------------------------------------------------------------
+" working with long lines
+" ------------------------------------------------------------------
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" ------------------------------------------------------------------
+" smart expansion
+" ------------------------------------------------------------------
+
+iab <expr> isoD	  strftime("%d. %B %Y")
+iab <expr> specD  strftime("%d. %b %Y")
+
+" ------------------------------------------------------------------
+" smart completion
+" ------------------------------------------------------------------
+
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+
+
+" ------------------------------------------------------------------
+" OCaml
+" ------------------------------------------------------------------
+
+autocmd FileType ocaml set ts=2|set sw=2|set noet
+
+" -- Noweb and Lipsum
+
+au BufRead,BufNewFile *.nw set filetype=noweb
+au BufRead,BufNewFile *.lp set filetype=noweb
+
+let noweb_backend   = "markdown"
+let noweb_language  = "ocaml"
+let noweb_fold_code = 1
+
+" -- Makefiles
+"
+autocmd FileType make set tabstop=8|set shiftwidth=8|set noexpandtab
+
+" -- Markdown
+
+autocmd BufRead,BufNewFile *.{md,mkd,mkdn}   set filetype=markdown
