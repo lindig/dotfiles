@@ -8,6 +8,7 @@
         st      = status -s
         br      = branch
         rv      = remote -v
+        cs      = commit -s
         ls      = log --oneline --graph --decorate
         la      = log --oneline --graph --decorate --all
         l1      = log --oneline
