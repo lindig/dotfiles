@@ -28,6 +28,13 @@ export GOPATH=/usr/local/opt/go
 # OCaml and OPAM
 . $HOME/.opam/opam-init/init.sh
 
+# Completion
+
+if type -path brew && test  -f $(brew --prefix)/etc/bash_completion; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+
 PS1=':\W \$ '
 umask u=rwx,g=rwx,o=rx
 shopt -s histappend
