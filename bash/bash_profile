@@ -6,6 +6,7 @@
 alias l='ls -F'
 alias ll='ls -lhF'
 alias la='ls -lahF'
+alias g=git
 alias m=less
 alias pd=pushd
 alias pp=popd
