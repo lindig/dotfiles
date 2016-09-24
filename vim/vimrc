@@ -163,6 +163,11 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
+" ------------------------------------------------------------------
+" SPEC
+" ------------------------------------------------------------------
+
+let spec_chglog_format = "%a %b %d %Y Christian Lindig <christian.lindig@citrix.com>"
 
 
 " ------------------------------------------------------------------
@@ -170,6 +175,8 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " ------------------------------------------------------------------
 
 autocmd FileType ocaml set ts=2|set sw=2|set noet
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 " -- Noweb and Lipsum
 
