@@ -135,7 +135,7 @@ inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
 
-highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermbg=red guibg=green
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -169,6 +169,17 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 let spec_chglog_format = "%a %b %d %Y Christian Lindig <christian.lindig@citrix.com>"
 
+func GitGrep(...)
+  let save = &grepprg
+  set grepprg=git\ grep\ -n\ $*
+  let s = 'grep'
+  for i in a:000
+    let s = s . ' ' . i
+  endfor
+  exe s
+  let &grepprg = save
+endfun
+command -nargs=? G call GitGrep(<f-args>)
 
 " ------------------------------------------------------------------
 " OCaml
