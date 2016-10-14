@@ -5,6 +5,7 @@
         lindig  = config user.name "Christian Lindig"
         citrix  = config user.email christian.lindig@citrix.com
         gmail   = config user.email lindig@gmail.com
+        alias   = config --get-regexp alias
         st      = status -s
         br      = branch
         rv      = remote -v
