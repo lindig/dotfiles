@@ -2,28 +2,33 @@
 # vim: set ts=8 et:
 #
 [alias]
-        lindig  = config user.name "Christian Lindig"
-        citrix  = config user.email christian.lindig@citrix.com
-        gmail   = config user.email lindig@gmail.com
-        alias   = config --get-regexp alias
-        st      = status -s
-        br      = branch
-        rv      = remote -v
-        cs      = commit -s
-        ls      = log --oneline --graph --decorate
-        la      = log --oneline --graph --decorate --all
-        l1      = log --oneline
-        ll      = log --pretty=format:"%C(blue)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  lindig  = config user.name "Christian Lindig"
+  citrix  = config user.email christian.lindig@citrix.com
+  gmail   = config user.email lindig@gmail.com
+  vim     = config core.editor vim
+  rvim    = config core.editor gvim --remote-wait
+  alias   = config --get-regexp alias
+  number  = ! git log --oneline --reverse | cat -n | tac
+  st      = status -s
+  br      = branch
+  rv      = remote -v
+  cs      = commit -s
+  ls      = log --oneline --graph --decorate
+  la      = log --oneline --graph --decorate --all
+  l1      = log --oneline
+  ll      = log --pretty=format:"%C(green)%h\\ %ad%C(yellow)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  xenserver
+
 [user]
-        name    = Christian Lindig
-        email   = lindig@gmail.com
+  name    = Christian Lindig
+  email   = lindig@gmail.com
 [mergetool]
-        keepBackup = true
-        prompt  = false
+  keepBackup = true
+  prompt  = false
 [push]
-        default = simple
+  default = simple
 [core]
-        editor  = gvim --remote-wait
+  editor  = gvim --remote-wait
 [merge]
-        tool    = gvimdiff
-        conflictstyle = diff3
+  tool    = gvimdiff
+  conflictstyle = diff3
