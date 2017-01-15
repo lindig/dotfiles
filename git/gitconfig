@@ -9,6 +9,7 @@
   rvim    = config core.editor gvim --remote-wait
   alias   = config --get-regexp alias
   number  = ! git log --oneline --reverse | cat -n | tac
+  find    = branch --commit
   st      = status -s
   br      = branch
   rv      = remote -v
@@ -18,6 +19,7 @@
   l1      = log --oneline
   ll      = log --pretty=format:"%C(green)%h\\ %ad%C(yellow)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
   xenserver
+  agrep   = !git grep
 
 [user]
   name    = Christian Lindig
