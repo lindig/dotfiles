@@ -1,4 +1,4 @@
-l ------------------------------------------------------------------
+" ------------------------------------------------------------------
 " ~/.vimrc
 " ------------------------------------------------------------------
 
@@ -136,18 +136,12 @@ inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
 
-highlight ExtraWhitespace ctermbg=red guibg=green
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
 " ------------------------------------------------------------------
 " smart expansion
 " ------------------------------------------------------------------
 
-iab <expr> isoD	  strftime("%d. %B %Y")
+iab <expr> isoD   strftime("%d. %B %Y")
+iab <expr> isoT   strftime("%T %d. %B %Y")
 iab <expr> specD  strftime("%d. %b %Y")
 
 " ------------------------------------------------------------------
@@ -186,7 +180,7 @@ command -nargs=? G call GitGrep(<f-args>)
 " OCaml
 " ------------------------------------------------------------------
 
-autocmd FileType ocaml set ts=2|set sw=2|set noet
+autocmd FileType ocaml set ts=2|set sw=2
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
@@ -194,15 +188,10 @@ execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 au BufRead,BufNewFile *.nw set filetype=noweb
 au BufRead,BufNewFile *.lp set filetype=noweb
-
-let noweb_backend   = "markdown"
-let noweb_language  = "ocaml"
-let noweb_fold_code = 1
-
-" -- Makefiles
 "
-autocmd FileType make set tabstop=8|set shiftwidth=8|set noexpandtab
+" -- templates
+"
+autocmd BufNewFile jbuild     silent! 0r $HOME/.vim/templates/jbuild
+autocmd BufNewFile Makefile   silent! 0r $HOME/.vim/templates/Makefile
+autocmd BufNewFile opam*      silent! 0r $HOME/.vim/templates/opam
 
-" -- Markdown
-
-autocmd BufRead,BufNewFile *.{md,mkd,mkdn}   set filetype=markdown
