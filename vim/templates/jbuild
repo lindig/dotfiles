@@ -1,0 +1,30 @@
+(jbuild_version 1)
+
+(executable
+ ((name main)
+  (public_name jbuild-pp)
+  (libraries
+   (containers containers.sexp))))
+
+(install
+ ((section doc)
+  (files
+   (ascii85enc.pod))
+  (section man)
+  (files
+   (ascii85enc.1))))
+
+(library
+ ((name ascii85)
+  (public_name ascii85)))
+
+(ocamllex
+ (agolex))
+
+(alias
+ ((name runtest)
+  (deps
+   (ago.exe))
+  (action
+   (run ${<} -test))))
+
